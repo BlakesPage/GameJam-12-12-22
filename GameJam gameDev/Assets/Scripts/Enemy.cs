@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
         float Disantace = Vector3.Distance(transform.position, player.transform.position);
-        Debug.Log(Disantace);
         if (Disantace < EnemyStats.ExplosionRadius / 2)
         {
             switch(type)
@@ -66,10 +65,4 @@ public class Enemy : MonoBehaviour
         EnemyStats.enemies.Remove(gameObject);
         Destroy(gameObject);
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawSphere(Vector3.zero, 3f);
-    //}
 }

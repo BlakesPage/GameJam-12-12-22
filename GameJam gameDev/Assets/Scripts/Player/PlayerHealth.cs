@@ -4,11 +4,5 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public void CanDie()
-    {
-        if (PlayerStats.PlayerHealth <= 0)
-        {
-            // die
-        }
-    }
+    
 }
