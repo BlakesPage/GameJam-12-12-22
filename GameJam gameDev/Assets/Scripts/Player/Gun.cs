@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject _Bullet;
     [SerializeField] Transform _firePoint;
 
+    [SerializeField] private UIStats _uiStats;
+
     private float lastTimeShoot = 0f;
 
     public void SpawnBullet()
@@ -32,8 +34,14 @@ public class Gun : MonoBehaviour
                 case GunType.ShotGun:
                     if (ShotGunStats.CurrentClip > 0)
                     {
-                        GameObject ShoutGunbullet = Instantiate(_Bullet, _firePoint.position, _firePoint.rotation);
-                        ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * ShotGunStats.BulletVelocity, ForceMode2D.Impulse);
+                        for(int i = 0 - ShotGunStats.Pellets / 2; i < ShotGunStats.Pellets; i++)
+                        { // idk man do shotgun spread
+                            //Vector2 rotate = PointWithPolarOffset(new Vector2(_firePoint.position.x, _firePoint.position.y), 5f, i * 20f);
+                            //Quaternion angle = Quaternion.Euler(0, 0, rotate.x);
+                            Quaternion angle = Quaternion.Euler(_firePoint.rotation.x + i * 20, _firePoint.rotation.y, _firePoint.rotation.z);
+                            GameObject ShoutGunbullet = Instantiate(_Bullet, _firePoint.position, angle);
+                            ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * ShotGunStats.BulletVelocity, ForceMode2D.Impulse);
+                        }
                         ShotGunStats.CurrentClip--;
                     }
                     break;
@@ -108,5 +116,63 @@ public class Gun : MonoBehaviour
         }
 
         Reload(type);
+        SwapWeapon();
+    }
+
+    private int weaponIndex;
+
+    void SwapWeapon()
+    {
+        bool detect = false;
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            weaponIndex = 0;
+            detect = true;
+            _uiStats.ARicon.SetActive(true);
+            _uiStats.ShotGunIcon.SetActive(false);
+            _uiStats.SMGIcon.SetActive(false);
+            Debug.Log("AR");
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            weaponIndex = 1;
+            detect = true;
+            _uiStats.ARicon.SetActive(false);
+            _uiStats.ShotGunIcon.SetActive(true);
+            _uiStats.SMGIcon.SetActive(false);
+            Debug.Log("ShotGun");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            weaponIndex = 2;
+            detect = true;
+            _uiStats.ARicon.SetActive(false);
+            _uiStats.ShotGunIcon.SetActive(false);
+            _uiStats.SMGIcon.SetActive(true);
+            Debug.Log("SMG");
+        }
+        if(detect)
+        {
+            switch (weaponIndex)
+            {
+                case 0:
+                    PlayerStats.type = GunType.AR;
+                    break;
+                case 1:
+                    PlayerStats.type = GunType.ShotGun;
+                    break;
+                case 2:
+                    PlayerStats.type = GunType.SubmachineGun;
+                    break;
+            }
+        }
+    }
+
+    public static Vector2 PointWithPolarOffset(Vector2 origin, float distance, float offset)
+    {
+        Vector2 point;
+        point.x = origin.x + Mathf.Sin((offset * Mathf.PI) / 180) * distance;
+        point.y = origin.y + Mathf.Cos((offset * Mathf.PI) / 180) * distance;
+        return point;
     }
 }

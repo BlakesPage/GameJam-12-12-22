@@ -8,8 +8,6 @@ public static class PlayerStats
     // Gun Type
     public static GunType type { get; set; } = GunType.AR;
 
-    public static int EnumCount = Enum.GetNames(typeof(GunType)).Length;
-
     // Player Stats
     public static int PlayerHealth { get; set; } = 10;
     public static float MoveSpeed { get; set; } = 6f;
@@ -80,13 +78,16 @@ public static class SmgStats
 public static class ShotGunStats
 {
     // ShotGun Stats
-    public static float FireRate { get; set; } = 0.8f;
+    public static float FireRate { get; set; } = 0.4f;
     public static int MagSize { get; set; } = 6;
     public static int CurrentClip { get; set; } = 6;
     public static int MaxAmmo { get; set; } = 60;
     public static int CurrentAmmo { get; set; } = 60;
-    public static int BulletDamage { get; set; } = 8;
+    public static int BulletDamage { get; set; } = 3;
     public static float BulletVelocity { get; set; } = 25f;
+    public static float BulletSpread { get; set; } = 5f;
+    public static int Pellets { get; set; } = 5;
+    public static float SpreadAngle { get; set; } = 5f;
 
     public static void ReloadShotGun()
     {
@@ -143,8 +144,9 @@ public static class EnemyStats
     public static List<GameObject> enemies = new List<GameObject>();
     public static int SpawnRate { get; set; } = 5;
     public static float SpawnInterval { get; set; } = 3f;
-    public static float MinMoveSpeed { get; set; } = 2f;
-    public static float MaxMoveSpeed { get; set; } = 5f;
+    public static int SpawnAmount { get; set; } = 3;
+    public static float MinMoveSpeed { get; set; } = 4f;
+    public static float MaxMoveSpeed { get; set; } = 10f;
     public static int Minhealth { get; set; } = 10;
     public static int Maxhealth { get; set; } = 25;
     public static int ExplosionDamage { get; set; } = 3;
