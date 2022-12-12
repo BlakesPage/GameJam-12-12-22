@@ -142,8 +142,11 @@ public static class EnemyStats
 { 
     public static List<GameObject> enemies = new List<GameObject>();
     public static int SpawnRate { get; set; } = 5;
+    public static float SpawnInterval { get; set; } = 3f;
     public static float MinMoveSpeed { get; set; } = 2f;
     public static float MaxMoveSpeed { get; set; } = 5f;
     public static int Minhealth { get; set; } = 10;
     public static int Maxhealth { get; set; } = 25;
+    public static int ExplosionDamage { get; set; } = 3;
+    public static float ExplosionRadius { get; set; } = 4f;
 }

@@ -30,7 +30,6 @@ public class Bullet : MonoBehaviour
         {
             Enemy e = collision.gameObject.GetComponent<Enemy>();
             e.health -= damage;
-            Debug.Log(e.health);
             Destroy(gameObject);
         }
         if(collision.gameObject.tag == "Ground")

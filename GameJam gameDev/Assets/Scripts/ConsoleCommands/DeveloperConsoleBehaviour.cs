@@ -68,6 +68,7 @@ namespace ConsoleCommands
             DevConsole.ProcessCommand(inputValue);
 
             inputField.text = string.Empty;
+            inputField.ActivateInputField();
         }
     }
 
