@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ConsoleCommands;
 
 [System.Serializable]
 public enum GunType { AR, ShotGun, SubmachineGun }
 public class Gun : MonoBehaviour
 {
+    [SerializeField] private DeveloperConsoleBehaviour dev;
     [SerializeField] private GameObject _Bullet;
     [SerializeField] Transform _firePoint;
 
@@ -50,13 +52,11 @@ public class Gun : MonoBehaviour
                     break;
             }
         }
-
-        
     }
 
     void Reload(GunType type)
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !dev.uiCanvas.activeInHierarchy)
         {
             switch (type)
             {
