@@ -46,8 +46,6 @@ public class Movement : MonoBehaviour
             _isJumping = false;
         }
     }
-
-    
     private bool isGrounded
     {
         get

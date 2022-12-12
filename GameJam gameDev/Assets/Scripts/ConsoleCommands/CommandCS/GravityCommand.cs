@@ -22,6 +22,4 @@ namespace ConsoleCommands
             return true;
         }
     }
-
 }
-
