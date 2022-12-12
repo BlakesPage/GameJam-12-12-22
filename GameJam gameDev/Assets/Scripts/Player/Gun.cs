@@ -8,36 +8,40 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private GameObject _Bullet;
     [SerializeField] Transform _firePoint;
-    public void Shoot()
+
+    private float lastTimeShoot = 0f;
+
+    public void SpawnBullet()
     {
-        if(Input.GetMouseButton(0))
+        GunType type = PlayerStats.type;
+        if (Input.GetMouseButton(0))
         {
-            switch (PlayerStats.type)
+            switch (type)
             {
                 case GunType.AR:
-                    if(PlayerStats.ArCurrentClip > 0)
+                    if (AssulteRifleStats.CurrentClip > 0)
                     {
                         GameObject ARbullet = Instantiate(_Bullet, _firePoint.position, _firePoint.rotation);
-                        ARbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * PlayerStats.ArBulletVelocity, ForceMode2D.Impulse);
-                        PlayerStats.ArCurrentAmmo--;
+                        ARbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * AssulteRifleStats.BulletVelocity, ForceMode2D.Impulse);
+                        AssulteRifleStats.CurrentClip--;
                     }
                     break;
 
                 case GunType.ShotGun:
-                    if (PlayerStats.ShotGunCurrentClip > 0)
+                    if (ShotGunStats.CurrentClip > 0)
                     {
                         GameObject ShoutGunbullet = Instantiate(_Bullet, _firePoint.position, _firePoint.rotation);
-                        ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * PlayerStats.SubMachineGunBulletVelocity, ForceMode2D.Impulse);
-                        PlayerStats.ShotGunCurrentClip--;
+                        ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * ShotGunStats.BulletVelocity, ForceMode2D.Impulse);
+                        ShotGunStats.CurrentClip--;
                     }
                     break;
 
                 case GunType.SubmachineGun:
-                    if (PlayerStats.SubMachineGunCurrentClip > 0)
+                    if (SmgStats.CurrentClip > 0)
                     {
                         GameObject SMGbullet = Instantiate(_Bullet, _firePoint.position, _firePoint.rotation);
-                        SMGbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * PlayerStats.SubMachineGunBulletVelocity, ForceMode2D.Impulse);
-                        PlayerStats.SubMachineGunCurrentClip--;
+                        SMGbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * SmgStats.BulletVelocity, ForceMode2D.Impulse);
+                        SmgStats.CurrentClip--;
                     }
                     break;
 
@@ -47,20 +51,25 @@ public class Gun : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        
+    }
+
+    void Reload(GunType type)
+    {
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            switch (PlayerStats.type)
+            switch (type)
             {
                 case GunType.AR:
-                    PlayerStats.ReloadAR();
+                    AssulteRifleStats.ReloadAR();
                     break;
 
                 case GunType.ShotGun:
-                    PlayerStats.ReloadShotGun();
+                    ShotGunStats.ReloadShotGun();
                     break;
 
                 case GunType.SubmachineGun:
-                    PlayerStats.ReloadSMG();
+                    SmgStats.ReloadSMG();
                     break;
 
                 default:
@@ -68,5 +77,36 @@ public class Gun : MonoBehaviour
                     break;
             }
         }
+    }
+    public void Shoot(GunType type)
+    {
+        float fireRate = 0;
+        
+        switch (type)
+        {
+            case GunType.AR:
+                fireRate = AssulteRifleStats.FireRate;
+                break;
+
+            case GunType.ShotGun:
+                fireRate = ShotGunStats.FireRate;
+                break;
+
+            case GunType.SubmachineGun:
+                fireRate = SmgStats.FireRate;
+                break;
+
+            default:
+                PlayerStats.type = GunType.AR;
+                break;
+        }
+
+        if (Time.time > lastTimeShoot + fireRate)
+        {
+            lastTimeShoot = Time.time;
+            SpawnBullet();
+        }
+
+        Reload(type);
     }
 }

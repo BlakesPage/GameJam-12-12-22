@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         movement.MovementInputs();
-        gun.Shoot();
+        gun.Shoot(PlayerStats.type);
         health.CanDie();
     }
 

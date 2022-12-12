@@ -12,82 +12,93 @@ public static class PlayerStats
     public static float MoveSpeed { get; set; } = 6f;
     public static float JumpHeight { get; set; } = 6f;
     public static float fallMultiplier { get; set; } = 1.05f;
+}
 
-    // Ar Stats
-    public static float ArFireRate { get; set; } = 60f;
-    public static int ArMagSize { get; set; } = 25; // mag size
-    public static int ArCurrentClip { get; set; } = 25; // current ammo in mag
-    public static int ArMaxAmmo { get; set; } = 150; // max ammo is reserve
-    public static int ArCurrentAmmo { get; set; } = 150; // current ammo in reserve
-    public static int ArBulletDamage { get; set; } = 4;
-    public static float ArBulletVelocity { get; set; } = 25f;
-
-    public static void ReloadAR()
-    {
-        int reloadAmount = PlayerStats.ArMagSize - PlayerStats.ArCurrentClip;
-        reloadAmount = (PlayerStats.ArCurrentAmmo - reloadAmount) >= 0 ? reloadAmount : PlayerStats.ArCurrentAmmo;
-        PlayerStats.ArCurrentClip += reloadAmount;
-        PlayerStats.ArCurrentAmmo -= reloadAmount;
-    }
-
-    public static void AddAmmoAr(int ammoAmount)
-    {
-        ArCurrentAmmo += ammoAmount;
-        if(ArCurrentAmmo > ArMaxAmmo)
-        {
-            ArCurrentAmmo = ArMaxAmmo;
-        }
-    }
-
-    // ShotGun Stats
-    public static float ShotGunFireRate { get; set; } = 12f;
-    public static int ShotGunMagSize { get; set; } = 6;
-    public static int ShotGunCurrentClip { get; set; } = 6;
-    public static int ShotGunMaxAmmo { get; set; } = 60;
-    public static int ShotGunCurrentAmmo { get; set; } = 60;
-    public static int ShotGunBulletDamage { get; set; } = 8;
-    public static float ShotGunBulletVelocity { get; set; } = 25f;
-
-    public static void ReloadShotGun()
-    {
-        int reloadAmount = PlayerStats.ShotGunMagSize - PlayerStats.ShotGunCurrentClip;
-        reloadAmount = (PlayerStats.ShotGunCurrentAmmo - reloadAmount) >= 0 ? reloadAmount : PlayerStats.ShotGunCurrentAmmo;
-        PlayerStats.ShotGunCurrentClip += reloadAmount;
-        PlayerStats.ShotGunCurrentAmmo -= reloadAmount;
-    }
-    public static void AddAmmoShotgun(int ammoAmount)
-    {
-        ShotGunCurrentAmmo += ammoAmount;
-        if (ShotGunCurrentAmmo > ShotGunMaxAmmo)
-        {
-            ShotGunCurrentAmmo = ShotGunMaxAmmo;
-        }
-    }
-
+public static class SmgStats
+{
     // Submachine Gun Stats
-    public static float SubMachineGunFireRate { get; set; } = 120f;
-    public static int SubMachineGunMagSize { get; set; } = 60;
-    public static int SubMachineGunCurrentClip { get; set; } = 60;
-    public static int SubMachineGunMaxAmmo { get; set; } = 240;
-    public static int SubMachineGunCurrentAmmo { get; set; } = 240;
-    public static int SubMachineGunBulletDamage { get; set; } = 2;
-    public static float SubMachineGunBulletVelocity { get; set; } = 25f;
+    public static float FireRate { get; set; } = 0.1f;
+    public static int MagSize { get; set; } = 60;
+    public static int CurrentClip { get; set; } = 60;
+    public static int MaxAmmo { get; set; } = 240;
+    public static int CurrentAmmo { get; set; } = 240;
+    public static int BulletDamage { get; set; } = 2;
+    public static float BulletVelocity { get; set; } = 25f;
 
     public static void ReloadSMG()
     {
-        int reloadAmount = PlayerStats.SubMachineGunMagSize - PlayerStats.SubMachineGunCurrentClip;
-        reloadAmount = (PlayerStats.SubMachineGunCurrentAmmo - reloadAmount) >= 0 ? reloadAmount : PlayerStats.SubMachineGunCurrentAmmo;
-        PlayerStats.SubMachineGunCurrentClip += reloadAmount;
-        PlayerStats.SubMachineGunCurrentAmmo -= reloadAmount;
+        int reloadAmount = MagSize - CurrentClip;
+        reloadAmount = (CurrentAmmo - reloadAmount) >= 0 ? reloadAmount : CurrentAmmo;
+        CurrentClip += reloadAmount;
+        CurrentAmmo -= reloadAmount;
     }
 
     public static void AddAmmoSMG(int ammoAmount)
     {
-        ShotGunCurrentAmmo += ammoAmount;
-        if (ShotGunCurrentAmmo > ShotGunMaxAmmo)
+        CurrentAmmo += ammoAmount;
+        if (CurrentAmmo > MaxAmmo)
         {
-            ShotGunCurrentAmmo = ShotGunMaxAmmo;
+            CurrentAmmo = MaxAmmo;
         }
+    }
+}
+
+public static class ShotGunStats
+{
+    // ShotGun Stats
+    public static float FireRate { get; set; } = 0.8f;
+    public static int MagSize { get; set; } = 6;
+    public static int CurrentClip { get; set; } = 6;
+    public static int MaxAmmo { get; set; } = 60;
+    public static int CurrentAmmo { get; set; } = 60;
+    public static int BulletDamage { get; set; } = 8;
+    public static float BulletVelocity { get; set; } = 25f;
+
+    public static void ReloadShotGun()
+    {
+        int reloadAmount = MagSize - CurrentClip;
+        reloadAmount = (CurrentAmmo - reloadAmount) >= 0 ? reloadAmount : CurrentAmmo;
+        CurrentClip += reloadAmount;
+        CurrentAmmo -= reloadAmount;
+    }
+    public static void AddAmmoShotgun(int ammoAmount)
+    {
+        CurrentAmmo += ammoAmount;
+        if (CurrentAmmo > MaxAmmo)
+        {
+            CurrentAmmo = MaxAmmo;
+        }
+    }
+}
+
+public static class AssulteRifleStats
+{
+    // Ar Stats
+    public static float FireRate { get; set; } = 0.2f;
+    public static int MagSize { get; set; } = 25; // mag size
+    public static int CurrentClip { get; set; } = 25; // current ammo in mag
+    public static int MaxAmmo { get; set; } = 150; // max ammo is reserve
+    public static int CurrentAmmo { get; set; } = 150; // current ammo in reserve
+    public static int BulletDamage { get; set; } = 4;
+    public static float BulletVelocity { get; set; } = 25f;
+
+    public static void ReloadAR()
+    {
+        int reloadAmount = MagSize - CurrentClip;
+        reloadAmount = (CurrentAmmo - reloadAmount) >= 0 ? reloadAmount : CurrentAmmo;
+        CurrentClip += reloadAmount;
+        CurrentAmmo -= reloadAmount;
+        Debug.Log("Current Clip: " + CurrentClip + " Current Ammo " + CurrentAmmo);
+    }
+
+    public static void AddAmmoAr(int ammoAmount)
+    {
+        CurrentAmmo += ammoAmount;
+        if (CurrentAmmo > MaxAmmo)
+        {
+            CurrentAmmo = MaxAmmo;
+        }
+        
     }
 }
 

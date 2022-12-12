@@ -4,25 +4,23 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private GunType type;
     private int damage;
-
 
     private void Start()
     {
-        switch (type)
+        switch (PlayerStats.type)
         {
             case GunType.AR:
-                damage = PlayerStats.ArBulletDamage;
+                damage = AssulteRifleStats.BulletDamage;
                 break;
             case GunType.ShotGun:
-                damage = PlayerStats.ShotGunBulletDamage;
+                damage = ShotGunStats.BulletDamage;
                 break;
             case GunType.SubmachineGun:
-                damage = PlayerStats.SubMachineGunBulletDamage;
+                damage = SmgStats.BulletDamage;
                 break;
             default:
-                type = GunType.AR;
+                PlayerStats.type = GunType.AR;
                 break;
         }
     }
@@ -31,6 +29,10 @@ public class Bullet : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Enemy>().health -= damage;
+        }
+        if(collision.gameObject.tag == "Ground")
+        {
+            Destroy(gameObject);
         }
     }
 }
