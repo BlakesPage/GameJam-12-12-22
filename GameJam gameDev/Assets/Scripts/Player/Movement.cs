@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
 
         if(_isJumping)
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(Vector2.up * JumpHeight, ForceMode2D.Impulse);
             _isJumping = false;
         }
@@ -53,7 +54,7 @@ public class Movement : MonoBehaviour
     {
         get
         {
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, Vector2.down, 1.1f);
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 0.3f, Vector2.down, 1.1f);
             foreach(RaycastHit2D cast in hit)
             {
                 if (cast.collider.tag == "Ground") return true;

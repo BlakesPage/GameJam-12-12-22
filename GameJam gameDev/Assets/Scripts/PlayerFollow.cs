@@ -8,10 +8,10 @@ public class PlayerFollow : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3(player.position.x, player.position.y, -10);
+        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
         if(player.position.y <= 0)
         {
-            transform.position = new Vector3(player.position.x, 0, -10);
+            transform.position = new Vector3(player.position.x, 0, transform.position.z);
         }
     }
 }
