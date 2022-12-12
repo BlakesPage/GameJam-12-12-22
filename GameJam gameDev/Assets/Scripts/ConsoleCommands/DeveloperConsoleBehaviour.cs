@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 using ConsoleCommands;
 using TMPro;
 
@@ -41,8 +42,28 @@ public class DeveloperConsoleBehaviour : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Toggle()
+    public void Toggle(CallbackContext context)
     {
+        if (!context.action.triggered) { return; }
 
+        if(uiCanvas.activeSelf)
+        {
+            Time.timeScale = pausedTimeScale;
+            uiCanvas.SetActive(false);
+        }
+        else
+        {
+            pausedTimeScale = Time.timeScale;
+            Time.timeScale = 0;
+            uiCanvas.SetActive(true);
+            inputField.ActivateInputField();
+        }
+    }
+
+    public void ProcessCommand(string inputValue)
+    {
+        DevConsole.ProcessCommand(inputValue);
+
+        inputField.text = string.Empty;
     }
 }
