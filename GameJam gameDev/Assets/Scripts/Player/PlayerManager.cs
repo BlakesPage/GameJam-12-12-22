@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private Movement movement;
     [SerializeField] private Gun gun;
-    [SerializeField] private GameObject deathUI;
+    [SerializeField] public GameObject deathUI;
 
     void Start()
     {
@@ -24,7 +24,6 @@ public class PlayerManager : MonoBehaviour
         if(Died)
         {
             deathUI.SetActive(true);
-            Time.timeScale = 0;
         }
     }
 

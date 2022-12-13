@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
         float y = Random.Range(bottomLeft.position.y + 1, topleft.position.y - 1);
         Vector3 POS = new Vector3(x, y, 0);
 
-        while(Vector3.Distance(POS, player.transform.position) < 5f)
+        while(Vector3.Distance(POS, player.transform.position) < 15f)
         {
             float i = Random.Range(topleft.position.x + 1, topRight.position.x - 1);
             float j = Random.Range(bottomLeft.position.y + 1, topleft.position.y - 1);

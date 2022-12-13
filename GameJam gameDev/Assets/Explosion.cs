@@ -20,11 +20,9 @@ public class Explosion : MonoBehaviour
         if(!damage)
         {
             float dis = Vector2.Distance(transform.position, player.transform.position);
-            Debug.Log(dis);
             if (dis < EnemyStats.ExplosionRadius)
             {
                 PlayerStats.PlayerHealth -= EnemyStats.ExplosionDamage;
-                Debug.Log(PlayerStats.PlayerHealth);
             }
             damage = true;
         }

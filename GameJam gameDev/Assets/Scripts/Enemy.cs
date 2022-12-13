@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public EnemyType type;
     [HideInInspector] public int health;
     private GameObject player;
 
@@ -74,12 +73,12 @@ public class Enemy : MonoBehaviour
 public static class Colours
 {
     public static Color red => new Color(1f, 0f, 0f, 1f);
-    public static Color purple => new Color(124f/255f, 0f, 255f, 1f);
-    public static Color orange => new Color(255f, 158f / 255f , 0f, 1f);
+    public static Color purple => new Color(182f/255f, 55f, 255f, 1f);
     public static Color pink => new Color(255f, 0f, 236f / 255f, 1f);
     public static Color cyan => new Color(0f, 0f / 220f / 255f, 255f, 1f);
     public static Color green => new Color(8f / 255f, 255f, 0f, 1f);
+    public static Color yellow => new Color(247f / 255f, 255f, 0f, 1f);
 
-    public static Color[] colours => new Color[] { red, purple, cyan, orange, pink, green };
+    public static Color[] colours => new Color[] { red, purple, cyan, pink, green, yellow };
     public static int coloursLength = colours.Length;
 }
