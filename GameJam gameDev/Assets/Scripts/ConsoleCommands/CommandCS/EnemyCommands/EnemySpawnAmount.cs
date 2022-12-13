@@ -5,8 +5,8 @@ using ConsoleCommands;
 
 namespace ConsoleCommands
 {
-    [CreateAssetMenu(fileName = "New Spawner Command", menuName = "DeveloperConsole/EnemySpawnCommands/SpawnInterval")]
-    public class EnemySpawnInterval : ConsoleCommand
+    [CreateAssetMenu(fileName = "New Spawner Command", menuName = "DeveloperConsole/EnemySpawnCommands/SpawnAmount")]
+    public class EnemySpawnAmount : ConsoleCommand
     {
         public override bool Process(string[] args)
         {
@@ -17,9 +17,9 @@ namespace ConsoleCommands
                 return false;
             }
 
-            if (value <= 0) value = 0.1f;
+            if (value <= 0) value = 1f;
 
-            EnemyStats.SpawnInterval = value;
+            EnemyStats.SpawnAmount = (int)value;
 
             return true;
         }
