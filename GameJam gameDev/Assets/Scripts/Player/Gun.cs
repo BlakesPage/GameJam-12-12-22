@@ -17,6 +17,11 @@ public class Gun : MonoBehaviour
 
     private float lastTimeShoot = 0f;
 
+    private void Start()
+    {
+        dev = FindObjectOfType<DeveloperConsoleBehaviour>();
+    }
+
     public void SpawnBullet()
     {
         GunType type = PlayerStats.type;

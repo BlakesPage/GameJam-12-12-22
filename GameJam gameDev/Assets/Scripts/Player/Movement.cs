@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dev = FindObjectOfType<DeveloperConsoleBehaviour>();
     }
 
     public void MovementInputs()
