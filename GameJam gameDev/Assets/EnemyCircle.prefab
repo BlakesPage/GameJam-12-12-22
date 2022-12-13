@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4696408320293925425}
   m_Layer: 0
   m_Name: EnemyCircle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   health: 0
-  explosion: {fileID: 6176944567417690529, guid: b7b7abd93fe65c14183c3df310ea5109, type: 3}
+  explosion:
+  - {fileID: 6176944567417690529, guid: 2e9fdef8e06aafb4ca92875009592d5d, type: 3}
+  - {fileID: 6176944567417690529, guid: 50ca4d04728a0514a8390c09aa52385b, type: 3}
+  - {fileID: 6176944567417690529, guid: b7b7abd93fe65c14183c3df310ea5109, type: 3}
 --- !u!58 &4696408320293925425
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -109,7 +112,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

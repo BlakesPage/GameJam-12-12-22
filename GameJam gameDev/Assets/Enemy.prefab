@@ -124,4 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   health: 0
-  explosion: {fileID: 6176944567417690529, guid: b7b7abd93fe65c14183c3df310ea5109, type: 3}
+  explosion:
+  - {fileID: 6176944567417690529, guid: 2e9fdef8e06aafb4ca92875009592d5d, type: 3}
+  - {fileID: 6176944567417690529, guid: 50ca4d04728a0514a8390c09aa52385b, type: 3}
+  - {fileID: 6176944567417690529, guid: b7b7abd93fe65c14183c3df310ea5109, type: 3}

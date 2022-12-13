@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemyTypes = new GameObject[1];
-    //[SerializeField] private List<GameObject> spawnLocations = new List<GameObject>();
+    [SerializeField] private List<GameObject> enemyTypes = new List<GameObject>();
     [SerializeField] private Transform TopLeft;
     [SerializeField] private Transform TopRight;
     [SerializeField] private Transform BottomLeft;
+
+    private GameObject player;
+
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerManager>().gameObject;
+    }
 
 
     float lastTime;
@@ -27,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (EnemyStats.enemies.Count < 150f)
             {
-                int rand = Random.Range(0, enemyTypes.Length - 1);
+                int rand = Random.Range(0, enemyTypes.Count);
                 GameObject enemy = Instantiate(enemyTypes[rand], randomSpawn(TopLeft, BottomLeft, TopRight), Quaternion.identity);
                 EnemyStats.enemies.Add(enemy);
             }
@@ -38,6 +44,15 @@ public class EnemySpawner : MonoBehaviour
     {
         float x = Random.Range(topleft.position.x + 1, topRight.position.x - 1);
         float y = Random.Range(bottomLeft.position.y + 1, topleft.position.y - 1);
-        return new Vector3(x, y, 0);
+        Vector3 POS = new Vector3(x, y, 0);
+
+        while(Vector3.Distance(POS, player.transform.position) < 5f)
+        {
+            float i = Random.Range(topleft.position.x + 1, topRight.position.x - 1);
+            float j = Random.Range(bottomLeft.position.y + 1, topleft.position.y - 1);
+            POS = new Vector3(i, j, 0);
+        }
+
+        return POS;
     }
 }
