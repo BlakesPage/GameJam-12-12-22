@@ -6,6 +6,6 @@ public class GameButtons : MonoBehaviour
 {
     public void Restart()
     {
-        
+        // reload Scene
     }
 }
