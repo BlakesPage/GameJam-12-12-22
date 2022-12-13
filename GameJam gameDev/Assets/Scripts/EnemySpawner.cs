@@ -37,11 +37,4 @@ public class EnemySpawner : MonoBehaviour
         float y = Random.Range(bottomLeft.position.y + 1, topleft.position.y - 1);
         return new Vector3(x, y, 0);
     }
-
-    //private Vector2 randomSpawn(Vector2 topleft, Vector2 bottomLeft, Vector2 topRight)
-    //{
-    //    float x = Random.Range(topleft.x + 1, topRight.x - 1);
-    //    float y = Random.Range(bottomLeft.y + 1, topleft.y - 1);
-    //    return new Vector2(x, y);
-    //}  
 }

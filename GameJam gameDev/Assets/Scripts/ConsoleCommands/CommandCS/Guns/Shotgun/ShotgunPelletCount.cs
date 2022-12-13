@@ -5,8 +5,8 @@ using ConsoleCommands;
 
 namespace ConsoleCommands
 {
-    [CreateAssetMenu(fileName = "New Movement Command", menuName = "DeveloperConsole/HealthCommands")]
-    public class PlayerHealthCommand : ConsoleCommand
+    [CreateAssetMenu(fileName = "New Gun Command", menuName = "DeveloperConsole/ShotgunCommands/PelletCount")]
+    public class ShotgunPelletCount : ConsoleCommand
     {
         public override bool Process(string[] args)
         {
@@ -17,12 +17,9 @@ namespace ConsoleCommands
                 return false;
             }
 
-            if(value < 0) value = 0;
-
-            PlayerStats.PlayerHealth = (int)value;
+            ShotGunStats.Pellets = (int)value;
 
             return true;
         }
     }
 }
-

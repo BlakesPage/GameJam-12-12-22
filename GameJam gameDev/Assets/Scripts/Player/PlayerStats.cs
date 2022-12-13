@@ -144,7 +144,6 @@ public enum EnemyType { Circle, Sqaure }
 public static class EnemyStats
 { 
     public static List<GameObject> enemies = new List<GameObject>();
-    public static int SpawnRate { get; set; } = 5;
     public static float SpawnInterval { get; set; } = 3f;
     public static int SpawnAmount { get; set; } = 3;
     public static float MinMoveSpeed { get; set; } = 4f;

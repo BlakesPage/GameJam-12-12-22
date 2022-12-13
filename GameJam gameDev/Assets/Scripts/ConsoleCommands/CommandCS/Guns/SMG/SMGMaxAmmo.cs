@@ -5,8 +5,8 @@ using ConsoleCommands;
 
 namespace ConsoleCommands
 {
-    [CreateAssetMenu(fileName = "New Movement Command", menuName = "DeveloperConsole/HealthCommands")]
-    public class PlayerHealthCommand : ConsoleCommand
+    [CreateAssetMenu(fileName = "New Gun Command", menuName = "DeveloperConsole/SmgCommands/MaxAmmo")]
+    public class SMGMaxAmmo : ConsoleCommand
     {
         public override bool Process(string[] args)
         {
@@ -17,12 +17,11 @@ namespace ConsoleCommands
                 return false;
             }
 
-            if(value < 0) value = 0;
+            if (value < 0f) value = 1f;
 
-            PlayerStats.PlayerHealth = (int)value;
+            SmgStats.MaxAmmo = (int)value;
 
             return true;
         }
     }
 }
-
