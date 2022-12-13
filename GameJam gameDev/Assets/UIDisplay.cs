@@ -68,6 +68,8 @@ public class UIDisplay : MonoBehaviour
         EnemyMaxHealth.text = "Enemy Max Health: " + EnemyStats.Maxhealth;
         EnemyExplosionDamage.text = "Explosion Damage: " + EnemyStats.ExplosionDamage;
         EnemyExplosionRadius.text = "Explosion Radius: " + EnemyStats.ExplosionRadius;
+        EnemyMinSize.text = "Min Size: " + EnemyStats.MinSize;
+        EnemyMaxSize.text = "Max Size: " + EnemyStats.MaxSize;
 
         Gravity.text = "Gravity: " + Physics2D.gravity.y;
     }

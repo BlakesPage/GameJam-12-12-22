@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     
     private float step;
     private float movespeed;
+    private float size;
 
     private float lifeTimer;
 
@@ -27,6 +28,8 @@ public class Enemy : MonoBehaviour
     {
         health = Random.Range(EnemyStats.Minhealth, EnemyStats.Maxhealth);
         movespeed = Random.Range(EnemyStats.MinMoveSpeed, EnemyStats.MaxMoveSpeed);
+        size = Random.Range(EnemyStats.MinSize, EnemyStats.MaxSize);
+        transform.localScale = new Vector3(size, size, size);
         step = movespeed * Time.deltaTime;
 
         if(movespeed < 5f)
@@ -37,10 +40,7 @@ public class Enemy : MonoBehaviour
         {
             spriteColour.color = Color.green;
         }
-        else
-        {
-            spriteColour.color = Color.red;
-        }
+        else { spriteColour.color = Color.red; }
     }
 
     private void Update()
@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             EnemyStats.enemies.Remove(gameObject);
+            Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

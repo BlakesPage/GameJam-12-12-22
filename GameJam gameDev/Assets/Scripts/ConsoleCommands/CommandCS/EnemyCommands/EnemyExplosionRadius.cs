@@ -17,7 +17,7 @@ namespace ConsoleCommands
                 return false;
             }
 
-            if (value <= 0) value = 2;
+            if (value <= EnemyStats.MinSize) value = EnemyStats.MinSize;
 
             EnemyStats.ExplosionRadius = value;
 

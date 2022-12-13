@@ -534,7 +534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &389950134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,6 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTypes:
   - {fileID: 3272934526311880343, guid: 93066be62057443438c3c4dfce50df95, type: 3}
+  - {fileID: 5295015716171052110, guid: 5a145a87c1a3bab4fa5d30b2129e238c, type: 3}
   TopLeft: {fileID: 218000461}
   TopRight: {fileID: 2040447331}
   BottomLeft: {fileID: 607154763}
@@ -2541,10 +2542,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2020334019498236815, guid: 8222e93aab907c74998a2dc626a6638f, type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2020334020162479826, guid: 8222e93aab907c74998a2dc626a6638f, type: 3}
       propertyPath: dev
       value: 
@@ -2609,10 +2606,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2020334020799965455, guid: 8222e93aab907c74998a2dc626a6638f, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8222e93aab907c74998a2dc626a6638f, type: 3}
 --- !u!1001 &5677124174831435050
@@ -2622,6 +2615,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 518777130, guid: e17d289af59f0af4291b0c0480838b88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677124174311147427, guid: e17d289af59f0af4291b0c0480838b88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5677124175733036057, guid: e17d289af59f0af4291b0c0480838b88, type: 3}
       propertyPath: m_Name
       value: DeveloperConsole

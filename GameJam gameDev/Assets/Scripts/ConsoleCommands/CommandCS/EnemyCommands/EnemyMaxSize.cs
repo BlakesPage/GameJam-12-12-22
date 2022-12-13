@@ -19,7 +19,7 @@ namespace ConsoleCommands
 
             if (value <= 0.5f) value = 0.5f;
 
-            EnemyStats.MinSize = value;
+            EnemyStats.MaxSize = value;
 
             return true;
         }
