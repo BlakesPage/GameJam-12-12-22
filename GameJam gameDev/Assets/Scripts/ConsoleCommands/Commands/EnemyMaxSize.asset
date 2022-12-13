@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a36c906162f4748419a68c3c7d1e26f0, type: 3}
-  m_Name: EnemyExplosionDamage
+  m_Script: {fileID: 11500000, guid: e2dc278e2da8fd244a8f3663804ed14b, type: 3}
+  m_Name: EnemyMaxSize
   m_EditorClassIdentifier: 
-  commandWord: explosiondamage
+  commandWord: maxsize

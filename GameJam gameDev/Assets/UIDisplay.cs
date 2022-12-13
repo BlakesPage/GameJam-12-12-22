@@ -33,6 +33,8 @@ public class UIDisplay : MonoBehaviour
     public TextMeshProUGUI EnemyMaxHealth;
     public TextMeshProUGUI EnemyExplosionDamage;
     public TextMeshProUGUI EnemyExplosionRadius;
+    public TextMeshProUGUI EnemyMinSize;
+    public TextMeshProUGUI EnemyMaxSize;
 
     public TextMeshProUGUI Gravity;
 

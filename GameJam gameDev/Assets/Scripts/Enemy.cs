@@ -15,9 +15,12 @@ public class Enemy : MonoBehaviour
 
     private float lifeTimer;
 
+    private SpriteRenderer spriteColour;
+
     private void Awake()
     {
         player = FindObjectOfType<PlayerManager>().gameObject;
+        spriteColour = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -25,6 +28,19 @@ public class Enemy : MonoBehaviour
         health = Random.Range(EnemyStats.Minhealth, EnemyStats.Maxhealth);
         movespeed = Random.Range(EnemyStats.MinMoveSpeed, EnemyStats.MaxMoveSpeed);
         step = movespeed * Time.deltaTime;
+
+        if(movespeed < 5f)
+        {
+            spriteColour.color = Color.blue;
+        }
+        else if(movespeed > 5f && movespeed < 10f)
+        {
+            spriteColour.color = Color.green;
+        }
+        else
+        {
+            spriteColour.color = Color.red;
+        }
     }
 
     private void Update()

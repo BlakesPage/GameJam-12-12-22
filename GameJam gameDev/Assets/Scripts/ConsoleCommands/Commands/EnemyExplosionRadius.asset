@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f620b7c191dcf2445a8a1eac4293566b, type: 3}
   m_Name: EnemyExplosionRadius
   m_EditorClassIdentifier: 
-  commandWord: enemyexplosionradius
+  commandWord: explosionradius

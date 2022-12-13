@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    private void Awake()
-    {
-        
-    }
-    private void Start()
-    {
-        float dis = Vector2.Distance(transform.position, player.transform.position);
-        if(dis < EnemyStats.ExplosionRadius)
-        {
-            PlayerStats.PlayerHealth -= EnemyStats.ExplosionDamage;
-            Debug.Log(PlayerStats.PlayerHealth);
-            Debug.Log("Hit Player");
-        }
-    }
+    private bool damage = false;
 
     float destroyTimer = 0f;
 
+    GameObject player;
+
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerManager>().gameObject;
+    }
+
     private void Update()
     {
+        if(!damage)
+        {
+            float dis = Vector2.Distance(transform.position, player.transform.position);
+            Debug.Log(dis);
+            if (dis < EnemyStats.ExplosionRadius)
+            {
+                PlayerStats.PlayerHealth -= EnemyStats.ExplosionDamage;
+                Debug.Log(PlayerStats.PlayerHealth);
+            }
+            damage = true;
+        }
+
         destroyTimer += Time.deltaTime;
         if(destroyTimer > 1.5f)
         {

@@ -45,7 +45,7 @@ public static class SmgStats
     public static int CurrentClip { get; set; } = 60;
     public static int MaxAmmo { get; set; } = 240;
     public static int CurrentAmmo { get; set; } = 240;
-    public static int BulletDamage { get; set; } = 2;
+    public static int BulletDamage { get; set; } = 5;
     public static float BulletVelocity { get; set; } = 25f;
     public static float RealoadTime { get; set; } = 1.2f;
 
@@ -75,7 +75,7 @@ public static class AssulteRifleStats
     public static int CurrentClip { get; set; } = 25; // current ammo in mag
     public static int MaxAmmo { get; set; } = 150; // max ammo is reserve
     public static int CurrentAmmo { get; set; } = 150; // current ammo in reserve
-    public static int BulletDamage { get; set; } = 4;
+    public static int BulletDamage { get; set; } = 9;
     public static float BulletVelocity { get; set; } = 25f;
     public static float RealoadTime { get; set; } = 1.2f;
 
@@ -106,10 +106,12 @@ public static class EnemyStats
     public static List<GameObject> enemies = new List<GameObject>();
     public static float SpawnInterval { get; set; } = 3f;
     public static int SpawnAmount { get; set; } = 3;
-    public static float MinMoveSpeed { get; set; } = 6f;
-    public static float MaxMoveSpeed { get; set; } = 12f;
+    public static float MinMoveSpeed { get; set; } = 8f;
+    public static float MaxMoveSpeed { get; set; } = 15f;
     public static int Minhealth { get; set; } = 10;
     public static int Maxhealth { get; set; } = 25;
     public static int ExplosionDamage { get; set; } = 3;
     public static float ExplosionRadius { get; set; } = 4f;
+    public static float MinSize { get; set; } = 0.5f;
+    public static float MaxSize { get; set; } = 3f;
 }
