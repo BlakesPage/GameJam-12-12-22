@@ -10,6 +10,11 @@ public class UiInfo : MonoBehaviour
     public GameObject GunsUI;
     public GameObject GlobalUI;
 
+    private void Start()
+    {
+        PlayerUI();
+    }
+
     public void PlayerUI()
     {
         playerUI.SetActive(true);

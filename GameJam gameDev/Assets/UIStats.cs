@@ -8,17 +8,14 @@ public class UIStats : MonoBehaviour
 {
     public TextMeshProUGUI health;
     public TextMeshProUGUI AR;
-    public TextMeshProUGUI ShotGun;
     public TextMeshProUGUI SMG;
 
     public GameObject ARicon;
-    public GameObject ShotGunIcon;
     public GameObject SMGIcon;
 
     private void Start()
     {
         ARicon.SetActive(true);
-        ShotGunIcon.SetActive(false);
         SMGIcon.SetActive(false);
     }
 
@@ -31,12 +28,6 @@ public class UIStats : MonoBehaviour
         Ar += " : " + AssulteRifleStats.CurrentAmmo.ToString();
         Ar += " / " + AssulteRifleStats.MaxAmmo.ToString();
         AR.text = Ar;
-
-        string Shotgun = ShotGunStats.CurrentClip.ToString();
-        Shotgun += " / " + ShotGunStats.MagSize.ToString();
-        Shotgun += " : " + ShotGunStats.CurrentAmmo.ToString();
-        Shotgun += " / " + ShotGunStats.MaxAmmo.ToString();
-        ShotGun.text = Shotgun;
 
         string smg = SmgStats.CurrentClip.ToString();
         smg += " / " + SmgStats.MagSize.ToString();

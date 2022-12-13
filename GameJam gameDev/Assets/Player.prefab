@@ -234,7 +234,6 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2020334019498236815}
   guns:
   - {fileID: 21300000, guid: 6ccbd420dbf95a342a3240b6343d359f, type: 3}
-  - {fileID: 21300000, guid: 50286b15c6163f741b0e4249ec71c00a, type: 3}
   - {fileID: 21300000, guid: ddf2cf0bb828bf04897cbd67e545ec04, type: 3}
   _uiStats: {fileID: 0}
 --- !u!114 &2020334020162479825

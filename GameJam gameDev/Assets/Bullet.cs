@@ -12,9 +12,6 @@ public class Bullet : MonoBehaviour
             case GunType.AR:
                 damage = AssulteRifleStats.BulletDamage;
                 break;
-            case GunType.ShotGun:
-                damage = ShotGunStats.BulletDamage;
-                break;
             case GunType.SubmachineGun:
                 damage = SmgStats.BulletDamage;
                 break;

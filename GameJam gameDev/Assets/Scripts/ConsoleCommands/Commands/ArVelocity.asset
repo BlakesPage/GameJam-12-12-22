@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed978d4a5a8624b8bc6c855047c58e, type: 3}
   m_Name: ArVelocity
   m_EditorClassIdentifier: 
-  commandWord: ArVelocity
+  commandWord: arvelocity

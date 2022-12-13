@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ebed7327aa580439c859e2ffa9bd5e, type: 3}
   m_Name: Fall Multiplier
   m_EditorClassIdentifier: 
-  commandWord: mass
+  commandWord: weight

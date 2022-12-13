@@ -4,14 +4,14 @@ using UnityEngine;
 using ConsoleCommands;
 
 [System.Serializable]
-public enum GunType { AR, ShotGun, SubmachineGun }
+public enum GunType { AR, SubmachineGun }
 public class Gun : MonoBehaviour
 {
     [SerializeField] private DeveloperConsoleBehaviour dev;
     [SerializeField] private GameObject _Bullet;
     [SerializeField] Transform _firePoint;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Sprite[] guns = new Sprite[3];
+    [SerializeField] private Sprite[] guns = new Sprite[2];
 
     [SerializeField] private UIStats _uiStats;
 
@@ -33,31 +33,6 @@ public class Gun : MonoBehaviour
                     }
                     break;
 
-                case GunType.ShotGun:
-                    if (ShotGunStats.CurrentClip > 0)
-                    {
-                        float arc = ShotGunStats.SpreadAngle;
-                        float shots = ShotGunStats.Pellets;
-                        float angleStep = arc / shots;
-
-                        float rotation = (float)Mathf.Atan2(_firePoint.position.x - transform.position.x, _firePoint.position.y - transform.position.y) * 180 / Mathf.PI;
-                        for (int i = 0; i < shots; i++)
-                        {
-                            float rotationO = -rotation - arc / 2 + angleStep / 2;
-                            rotationO += angleStep * i;
-                            Vector2 GoHere = PointWithPolarOffset(new Vector2(_firePoint.position.x, _firePoint.position.y), 1f, rotationO).normalized;
-
-                            GameObject ShoutGunbullet = Instantiate(_Bullet, _firePoint.position, Quaternion.identity);
-                            
-                            ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(GoHere * ShotGunStats.BulletVelocity, ForceMode2D.Impulse);
-                            //ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(GoHere, ForceMode2D.Impulse);
-
-                            Debug.Log(GoHere * ShotGunStats.BulletVelocity);
-                        }
-                        ShotGunStats.CurrentClip--;
-                    }
-                    break;
-
                 case GunType.SubmachineGun:
                     if (SmgStats.CurrentClip > 0)
                     {
@@ -74,26 +49,36 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    bool isReloadingAR = false;
+    float reloadTimerAR;
+    float reloadTimerSMG;
+    bool isReloadingSMG = false;
+
+
+    public void TryingToReload()
     {
-        Gizmos.color = Color.yellow;
-        float arc = ShotGunStats.SpreadAngle;
-        float shots = ShotGunStats.Pellets;
-        float angleStep = arc / shots;
-
-        float rotation = (float)Mathf.Atan2(_firePoint.position.x - transform.position.x, _firePoint.position.y - transform.position.y) * 180 / Mathf.PI;
-
-        for(int i = 0; i < shots; i++)
+        if (isReloadingAR)
         {
-            float rotationO = rotation - arc / 2 + angleStep / 2;
-            rotationO += angleStep * i;
-            Vector2 GoHere = PointWithPolarOffset(new Vector2(_firePoint.position.x, _firePoint.position.y), 1f, rotationO);
-
-            Gizmos.DrawWireSphere(GoHere, 0.1f);
+            reloadTimerAR += Time.deltaTime;
+            Debug.Log(reloadTimerAR);
+            if(reloadTimerAR > AssulteRifleStats.RealoadTime)
+            {
+                AssulteRifleStats.ReloadAR();
+                reloadTimerAR = 0;
+                isReloadingAR = false;
+            }
         }
-        Gizmos.DrawWireSphere(_firePoint.position, 0.2f);
+        if (isReloadingSMG)
+        {
+            reloadTimerSMG += Time.deltaTime;
+            if (reloadTimerSMG > AssulteRifleStats.RealoadTime)
+            {
+                SmgStats.ReloadSMG();
+                reloadTimerSMG = 0;
+                isReloadingSMG = false;
+            }
+        }
     }
-
     void Reload(GunType type)
     {
         if (Input.GetKeyDown(KeyCode.R) && !dev.uiCanvas.activeInHierarchy)
@@ -101,15 +86,11 @@ public class Gun : MonoBehaviour
             switch (type)
             {
                 case GunType.AR:
-                    AssulteRifleStats.ReloadAR();
-                    break;
-
-                case GunType.ShotGun:
-                    ShotGunStats.ReloadShotGun();
+                    isReloadingAR = true;
                     break;
 
                 case GunType.SubmachineGun:
-                    SmgStats.ReloadSMG();
+                    isReloadingSMG = true;
                     break;
 
                 default:
@@ -126,10 +107,6 @@ public class Gun : MonoBehaviour
         {
             case GunType.AR:
                 fireRate = AssulteRifleStats.FireRate;
-                break;
-
-            case GunType.ShotGun:
-                fireRate = ShotGunStats.FireRate;
                 break;
 
             case GunType.SubmachineGun:
@@ -161,27 +138,15 @@ public class Gun : MonoBehaviour
             weaponIndex = 0;
             detect = true;
             _uiStats.ARicon.SetActive(true);
-            _uiStats.ShotGunIcon.SetActive(false);
             _uiStats.SMGIcon.SetActive(false);
             _spriteRenderer.sprite = guns[weaponIndex];
             Debug.Log("AR");
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             weaponIndex = 1;
             detect = true;
             _uiStats.ARicon.SetActive(false);
-            _uiStats.ShotGunIcon.SetActive(true);
-            _uiStats.SMGIcon.SetActive(false);
-            _spriteRenderer.sprite = guns[weaponIndex];
-            Debug.Log("ShotGun");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            weaponIndex = 2;
-            detect = true;
-            _uiStats.ARicon.SetActive(false);
-            _uiStats.ShotGunIcon.SetActive(false);
             _uiStats.SMGIcon.SetActive(true);
             _spriteRenderer.sprite = guns[weaponIndex];
             Debug.Log("SMG");
@@ -194,9 +159,6 @@ public class Gun : MonoBehaviour
                     PlayerStats.type = GunType.AR;
                     break;
                 case 1:
-                    PlayerStats.type = GunType.ShotGun;
-                    break;
-                case 2:
                     PlayerStats.type = GunType.SubmachineGun;
                     break;
             }

@@ -17,7 +17,9 @@ namespace ConsoleCommands
                 return false;
             }
 
-            AssulteRifleStats.FireRate = (value / Time.deltaTime) / 60;
+            if(value < 0f) value = 0.1f;
+
+            AssulteRifleStats.FireRate = value;
 
             return true;
         }

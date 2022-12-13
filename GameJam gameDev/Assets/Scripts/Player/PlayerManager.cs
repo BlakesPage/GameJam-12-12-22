@@ -17,7 +17,10 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         movement.MovementInputs();
+
         gun.Shoot(PlayerStats.type);
+        gun.TryingToReload();
+
         if(Died)
         {
             deathUI.SetActive(true);

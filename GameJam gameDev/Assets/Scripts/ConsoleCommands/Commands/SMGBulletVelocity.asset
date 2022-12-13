@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040a135a4e9d07148aebabf5277b83cc, type: 3}
   m_Name: SMGBulletVelocity
   m_EditorClassIdentifier: 
-  commandWord: smgbulletvelocity
+  commandWord: smgvelocity
