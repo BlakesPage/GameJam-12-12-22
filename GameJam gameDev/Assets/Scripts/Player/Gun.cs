@@ -34,13 +34,25 @@ public class Gun : MonoBehaviour
                 case GunType.ShotGun:
                     if (ShotGunStats.CurrentClip > 0)
                     {
-                        for(int i = 0 - ShotGunStats.Pellets / 2; i < ShotGunStats.Pellets; i++)
-                        { // idk man do shotgun spread
-                            //Vector2 rotate = PointWithPolarOffset(new Vector2(_firePoint.position.x, _firePoint.position.y), 5f, i * 20f);
-                            //Quaternion angle = Quaternion.Euler(0, 0, rotate.x);
-                            Quaternion angle = Quaternion.Euler(_firePoint.rotation.x + i * 20, _firePoint.rotation.y, _firePoint.rotation.z);
-                            GameObject ShoutGunbullet = Instantiate(_Bullet, _firePoint.position, angle);
-                            ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(_firePoint.right * ShotGunStats.BulletVelocity, ForceMode2D.Impulse);
+                        float arc = ShotGunStats.SpreadAngle;
+                        float shots = ShotGunStats.Pellets;
+                        float angleStep = arc / shots;
+
+                        float rotation = (float)Mathf.Atan2(_firePoint.position.x - transform.position.x, _firePoint.position.y - transform.position.y) * 180 / Mathf.PI;
+                        for (int i = 0; i < shots; i++)
+                        {
+                            float rotationO = -rotation - arc / 2 + angleStep / 2;
+                            rotationO += angleStep * i;
+                            Vector2 GoHere = PointWithPolarOffset(new Vector2(_firePoint.position.x, _firePoint.position.y), 1f, rotationO).normalized;
+                            Debug.Log(GoHere);
+
+                            Quaternion roationangle = Quaternion.Euler(0, 0, 0);
+
+                            GameObject ShoutGunbullet = Instantiate(_Bullet, _firePoint.position, roationangle);
+                            
+                            ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(GoHere * ShotGunStats.BulletVelocity / 20, ForceMode2D.Impulse);
+
+                            Debug.Log(GoHere * ShotGunStats.BulletVelocity);
                         }
                         ShotGunStats.CurrentClip--;
                     }
@@ -60,6 +72,26 @@ public class Gun : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        float arc = ShotGunStats.SpreadAngle;
+        float shots = ShotGunStats.Pellets;
+        float angleStep = arc / shots;
+
+        float rotation = (float)Mathf.Atan2(_firePoint.position.x - transform.position.x, _firePoint.position.y - transform.position.y) * 180 / Mathf.PI;
+
+        for(int i = 0; i < shots; i++)
+        {
+            float rotationO = rotation - arc / 2 + angleStep / 2;
+            rotationO += angleStep * i;
+            Vector2 GoHere = PointWithPolarOffset(new Vector2(_firePoint.position.x, _firePoint.position.y), 1f, rotationO);
+
+            Gizmos.DrawWireSphere(GoHere, 0.1f);
+        }
+        Gizmos.DrawWireSphere(_firePoint.position, 0.2f);
     }
 
     void Reload(GunType type)

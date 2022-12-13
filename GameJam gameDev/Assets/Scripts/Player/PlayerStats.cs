@@ -56,6 +56,7 @@ public static class SmgStats
     public static int CurrentAmmo { get; set; } = 240;
     public static int BulletDamage { get; set; } = 2;
     public static float BulletVelocity { get; set; } = 25f;
+    public static float RealoadTime { get; set; } = 25f;
 
     public static void ReloadSMG()
     {
@@ -85,9 +86,9 @@ public static class ShotGunStats
     public static int CurrentAmmo { get; set; } = 60;
     public static int BulletDamage { get; set; } = 3;
     public static float BulletVelocity { get; set; } = 25f;
-    public static float BulletSpread { get; set; } = 5f;
     public static int Pellets { get; set; } = 5;
-    public static float SpreadAngle { get; set; } = 5f;
+    public static float SpreadAngle { get; set; } = 45f;
+    public static float RealoadTime { get; set; } = 25f;
 
     public static void ReloadShotGun()
     {
@@ -116,6 +117,7 @@ public static class AssulteRifleStats
     public static int CurrentAmmo { get; set; } = 150; // current ammo in reserve
     public static int BulletDamage { get; set; } = 4;
     public static float BulletVelocity { get; set; } = 25f;
+    public static float RealoadTime { get; set; } = 25f;
 
     public static void ReloadAR()
     {
