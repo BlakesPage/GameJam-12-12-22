@@ -17,6 +17,8 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if(value < 0f) value = 0f;
+
             AssulteRifleStats.RealoadTime = value;
 
             return true;

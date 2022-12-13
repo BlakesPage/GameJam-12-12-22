@@ -25,9 +25,12 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < EnemyStats.SpawnAmount; i++)
         {
-            int rand = Random.Range(0, enemyTypes.Length - 1);
-            GameObject enemy = Instantiate(enemyTypes[rand], randomSpawn(TopLeft, BottomLeft, TopRight), Quaternion.identity);
-            EnemyStats.enemies.Add(enemy);
+            if (EnemyStats.enemies.Count < 150f)
+            {
+                int rand = Random.Range(0, enemyTypes.Length - 1);
+                GameObject enemy = Instantiate(enemyTypes[rand], randomSpawn(TopLeft, BottomLeft, TopRight), Quaternion.identity);
+                EnemyStats.enemies.Add(enemy);
+            }
         }
     }
 

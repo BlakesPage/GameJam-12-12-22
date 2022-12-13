@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private int damage;
-
     private void Start()
     {
         switch (PlayerStats.type)
@@ -24,15 +23,16 @@ public class Bullet : MonoBehaviour
                 break;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             Enemy e = collision.gameObject.GetComponent<Enemy>();
             e.health -= damage;
             Destroy(gameObject);
         }
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             Destroy(gameObject);
         }

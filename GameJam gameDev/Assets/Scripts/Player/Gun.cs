@@ -10,6 +10,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private DeveloperConsoleBehaviour dev;
     [SerializeField] private GameObject _Bullet;
     [SerializeField] Transform _firePoint;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Sprite[] guns = new Sprite[3];
 
     [SerializeField] private UIStats _uiStats;
 
@@ -44,13 +46,11 @@ public class Gun : MonoBehaviour
                             float rotationO = -rotation - arc / 2 + angleStep / 2;
                             rotationO += angleStep * i;
                             Vector2 GoHere = PointWithPolarOffset(new Vector2(_firePoint.position.x, _firePoint.position.y), 1f, rotationO).normalized;
-                            Debug.Log(GoHere);
 
-                            Quaternion roationangle = Quaternion.Euler(0, 0, 0);
-
-                            GameObject ShoutGunbullet = Instantiate(_Bullet, _firePoint.position, roationangle);
+                            GameObject ShoutGunbullet = Instantiate(_Bullet, _firePoint.position, Quaternion.identity);
                             
-                            ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(GoHere * ShotGunStats.BulletVelocity / 20, ForceMode2D.Impulse);
+                            ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(GoHere * ShotGunStats.BulletVelocity, ForceMode2D.Impulse);
+                            //ShoutGunbullet.GetComponent<Rigidbody2D>().AddForce(GoHere, ForceMode2D.Impulse);
 
                             Debug.Log(GoHere * ShotGunStats.BulletVelocity);
                         }
@@ -163,6 +163,7 @@ public class Gun : MonoBehaviour
             _uiStats.ARicon.SetActive(true);
             _uiStats.ShotGunIcon.SetActive(false);
             _uiStats.SMGIcon.SetActive(false);
+            _spriteRenderer.sprite = guns[weaponIndex];
             Debug.Log("AR");
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2))
@@ -172,6 +173,7 @@ public class Gun : MonoBehaviour
             _uiStats.ARicon.SetActive(false);
             _uiStats.ShotGunIcon.SetActive(true);
             _uiStats.SMGIcon.SetActive(false);
+            _spriteRenderer.sprite = guns[weaponIndex];
             Debug.Log("ShotGun");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -181,6 +183,7 @@ public class Gun : MonoBehaviour
             _uiStats.ARicon.SetActive(false);
             _uiStats.ShotGunIcon.SetActive(false);
             _uiStats.SMGIcon.SetActive(true);
+            _spriteRenderer.sprite = guns[weaponIndex];
             Debug.Log("SMG");
         }
         if(detect)

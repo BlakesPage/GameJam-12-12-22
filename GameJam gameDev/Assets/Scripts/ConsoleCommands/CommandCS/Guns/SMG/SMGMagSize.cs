@@ -19,6 +19,8 @@ namespace ConsoleCommands
 
             if (value <= 0f) value = 1f;
 
+            if (value < SmgStats.CurrentClip) SmgStats.CurrentClip = (int)value;
+
             SmgStats.MagSize = (int)value;
 
             return true;

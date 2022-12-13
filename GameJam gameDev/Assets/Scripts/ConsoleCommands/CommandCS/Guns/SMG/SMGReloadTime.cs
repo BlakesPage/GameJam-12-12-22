@@ -17,7 +17,7 @@ namespace ConsoleCommands
                 return false;
             }
 
-            if (value < 0f) value = 0f;
+            if (value < 0f) value = 0.1f;
 
             SmgStats.RealoadTime = value;
 

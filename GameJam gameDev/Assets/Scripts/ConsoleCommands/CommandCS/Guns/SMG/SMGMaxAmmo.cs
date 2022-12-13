@@ -19,6 +19,8 @@ namespace ConsoleCommands
 
             if (value < 0f) value = 1f;
 
+            if(value < SmgStats.CurrentAmmo) SmgStats.CurrentAmmo = (int)value;
+
             SmgStats.MaxAmmo = (int)value;
 
             return true;

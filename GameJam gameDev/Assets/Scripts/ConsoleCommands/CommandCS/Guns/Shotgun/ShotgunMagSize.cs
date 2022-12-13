@@ -17,6 +17,10 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if(value < 0f) value = 1f;
+
+            if(value < ShotGunStats.CurrentClip) ShotGunStats.CurrentClip = (int)value;
+
             ShotGunStats.MagSize = (int)value;
 
             return true;

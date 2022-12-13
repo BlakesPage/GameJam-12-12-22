@@ -17,6 +17,8 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if((int)value < AssulteRifleStats.CurrentAmmo) AssulteRifleStats.CurrentAmmo = (int)value;
+
             AssulteRifleStats.MaxAmmo = (int)value;
 
             return true;

@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     private float step;
     private float movespeed;
 
+    private float lifeTimer;
+
     private void Awake()
     {
         player = FindObjectOfType<PlayerManager>().gameObject;
@@ -27,13 +29,15 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        lifeTimer += Time.deltaTime;
         if(health <= 0)
         {
             EnemyStats.enemies.Remove(gameObject);
             Destroy(gameObject);
         }
+
         float Disantace = Vector3.Distance(transform.position, player.transform.position);
-        if (Disantace < EnemyStats.ExplosionRadius / 2)
+        if (Disantace < EnemyStats.ExplosionRadius / 2 || lifeTimer > 60f)
         {
             switch(type)
             {

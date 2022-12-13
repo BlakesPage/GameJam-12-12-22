@@ -17,6 +17,10 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if(value < 0f) value = 1f;
+
+            if(value < ShotGunStats.CurrentAmmo) ShotGunStats.CurrentAmmo = (int)value;
+
             ShotGunStats.MaxAmmo = (int)value;
 
             return true;

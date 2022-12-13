@@ -17,6 +17,8 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if((int)value < AssulteRifleStats.CurrentClip) AssulteRifleStats.CurrentClip = (int)value;
+
             AssulteRifleStats.MagSize = (int)value;
 
             return true;

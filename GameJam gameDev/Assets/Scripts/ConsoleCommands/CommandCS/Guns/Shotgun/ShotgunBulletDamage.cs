@@ -17,6 +17,8 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if(value <= 0) value = 1f;
+
             ShotGunStats.BulletDamage = (int)value;
 
             return true;

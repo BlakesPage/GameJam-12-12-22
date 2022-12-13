@@ -17,6 +17,8 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if(value <= 0f) value = 0.1f;
+
             ShotGunStats.FireRate = (value * Time.deltaTime) / 60;
 
             return true;

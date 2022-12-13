@@ -17,6 +17,8 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if(value < 0f) value = 0.1f;
+
             AssulteRifleStats.BulletVelocity = value;
 
             return true;

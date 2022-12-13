@@ -17,6 +17,8 @@ namespace ConsoleCommands
                 return false;
             }
 
+            if(value <= 1f) value = 1f;
+
             ShotGunStats.Pellets = (int)value;
 
             return true;
